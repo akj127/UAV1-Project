@@ -17,17 +17,37 @@ bound_orig = [-200, 50];
 % get input signal
 [x_in, y_in, z_in, yaw_in] = compute_sim_in(final_path, final_yaw, wait_time);
 
-global K_px K_dx K_py K_dy K_pz K_dz K_p_phi K_d_phi K_p_theta K_d_theta K_p_psi K_d_psi Jr I_mat L k b m g;
-
 % TODO: please fill the following control parameters out based on your own 
 % design
+
+%% moment of inertia calculation
+% num_cells = 3;
+% M_drone = 1 + 0.3*num_cells; % Mass of the drone's spherical body (kg)
+% M_motor = 0.1; % Mass of each motor (kg)
+% L = 0.25;      % Arm length (m)
+% r_prop = 0.1;  % Propeller radius (m)
+% % Calculations
+% r = L / 4; % Radius of the spherical body
+% % Moments of inertia
+% Ixx = (2/5) * M_drone * r^2 + 2 * L^2 * M_motor;
+% Iyy = Ixx; % I_xx and I_yy are the same
+% Izz = (2/5) * M_drone * r^2 + 4 * L^2 * M_motor;
+% % Rotor moment of inertia
+% Jr = 0.01 * M_motor * r_prop^2;
+% 
+% I_mat = diag([Ixx Iyy Izz]);
+% % L = 0.0;  % arm length of quadrotor
+% k = 0.005;  % thrust coefficient
+% b = 0.0001;  % drag coefficient
+% m =M_drone + 4* M_motor;  % quadrotor mass(body, sensor, motor, cell)
+% g = 9.81;
+
 K_px = 2.0;
 K_dx = 1.0;
 K_py = 2.0;
 K_dy = 1.0;
 K_pz = 3.0;
 K_dz = 1.5;
-
 K_p_phi = 4.0;
 K_d_phi = 2.0;
 K_p_theta = 4.0;
@@ -35,8 +55,6 @@ K_d_theta = 2.0;
 K_p_psi = 3.0;
 K_d_psi = 1.5;
 
-% TODO: Please fill the following parameters based on your own UAV
-% configuration design
 Jr = 0.0001;  % rotational moment of inertia
 Ixx = 0.015625;  % moment of inertia at x-axis
 Iyy = 0.015625;  % moment of inertia at y-axis
@@ -55,4 +73,5 @@ fprintf("Simulation finished")
 
 %% PLOT RESULT %%
 % plot_path_2d(final_path, x_out, y_out, x_bound, y_bound);
+
 plot_path_3d(final_path, x_out, y_out, z_out, bound_orig);
