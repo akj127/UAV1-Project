@@ -56,14 +56,14 @@ K_p_psi = 3.0;
 K_d_psi = 1.5;
 
 Jr = 0.0001;  % rotational moment of inertia
-Ixx = 0.015625;  % moment of inertia at x-axis
-Iyy = 0.015625;  % moment of inertia at y-axis
-Izz = 0.028125;  % moment of inertia at z-axis
+Ixx = 0.0232;  % moment of inertia at x-axis
+Iyy = 0.0232;  % moment of inertia at y-axis
+Izz = 0.0465;  % moment of inertia at z-axis
 I_mat = diag([Ixx Iyy Izz]);
-L = 0.25;  % arm length of quadrotor
+L = 0.30;  % arm length of quadrotor
 k = 0.09;  % lift coefficient
 b = 0.07;  % drag coefficient
-m = 2.0;  % quadrotor mass
+m = 1.8;  % quadrotor mass
 g = 9.81;
 
 % TODO: update the simulink model here to represent your own UAV dynamics
