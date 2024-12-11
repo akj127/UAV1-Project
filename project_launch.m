@@ -21,9 +21,9 @@ bound_orig = [-200, 50];
 % design
 
 %% moment of inertia calculation
-% num_cells = 3;
-% M_drone = 1 + 0.3*num_cells; % Mass of the drone's spherical body (kg)
-% M_motor = 0.1; % Mass of each motor (kg)
+num_cells = 2;
+M_drone = 1 + 0.2*num_cells; % Mass of the drone's spherical body (kg)
+M_motor = 0.1; % Mass of each motor (kg)
 % L = 0.25;      % Arm length (m)
 % r_prop = 0.1;  % Propeller radius (m)
 % % Calculations
@@ -41,37 +41,37 @@ bound_orig = [-200, 50];
 % b = 0.0001;  % drag coefficient
 % m =M_drone + 4* M_motor;  % quadrotor mass(body, sensor, motor, cell)
 % g = 9.81;
-
-K_px = 2.0;
-K_dx = 1.0;
-K_py = 2.0;
-K_dy = 1.0;
-K_pz = 3.0;
-K_dz = 1.5;
-K_p_phi = 4.0;
-K_d_phi = 2.0;
-K_p_theta = 4.0;
-K_d_theta = 2.0;
-K_p_psi = 3.0;
-K_d_psi = 1.5;
-
-Jr = 0.0001;  % rotational moment of inertia
-Ixx = 0.0232;  % moment of inertia at x-axis
-Iyy = 0.0232;  % moment of inertia at y-axis
-Izz = 0.0465;  % moment of inertia at z-axis
+%% parameters
+K_px = 0.00003;
+K_dx = 0.00001;
+K_py = 0.0;
+K_dy = 0.0;
+K_pz = 0.0001;
+K_dz = 0.001;
+K_p_phi = 0.05;
+K_d_phi = 0.01;
+K_p_theta = 0.0002;
+K_d_theta = 0.1;
+K_p_psi = 0.4;
+K_d_psi = 0.136;
+%%
+Jr = 1.6129e-05;  % rotational moment of inertia
+Ixx = 0.03411283500000001;  % moment of inertia at x-axis
+Iyy = Ixx;  % moment of inertia at y-axis
+Izz = 0.06314503500000002;  % moment of inertia at z-axis
 I_mat = diag([Ixx Iyy Izz]);
-L = 0.30;  % arm length of quadrotor
+L = 0.381;  % arm length of quadrotor
 k = 0.09;  % lift coefficient
 b = 0.07;  % drag coefficient
 m = 1.8;  % quadrotor mass
 g = 9.81;
 
 % TODO: update the simulink model here to represent your own UAV dynamics
-sim('Quadrotor_Model_2.slx');
+sim('Quadrotor_Model.slx');
 
 fprintf("Simulation finished")
 
 %% PLOT RESULT %%
-% plot_path_2d(final_path, x_out, y_out, x_bound, y_bound);
+plot_path_2d(final_path, x_out, y_out, x_bound, y_bound);
 
-plot_path_3d(final_path, x_out, y_out, z_out, bound_orig);
+%plot_path_3d(final_path, x_out, y_out, z_out, bound_orig);
