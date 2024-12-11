@@ -44,8 +44,8 @@ M_motor = 0.1; % Mass of each motor (kg)
 %% parameters
 K_px = 0.00003;
 K_dx = 0.00001;
-K_py = 0.0;
-K_dy = 0.0;
+K_py = 0.0001;
+K_dy = 0.00005;
 K_pz = 0.0001;
 K_dz = 0.001;
 K_p_phi = 0.05;
