@@ -42,18 +42,40 @@ M_motor = 0.1; % Mass of each motor (kg)
 % m =M_drone + 4* M_motor;  % quadrotor mass(body, sensor, motor, cell)
 % g = 9.81;
 %% parameters
-K_px = 0.00003;
-K_dx = 0.00001;
-K_py = 0.0001;
-K_dy = 0.00005;
-K_pz = 0.0001;
-K_dz = 0.001;
-K_p_phi = 0.05;
-K_d_phi = 0.01;
-K_p_theta = 0.0002;
-K_d_theta = 0.1;
-K_p_psi = 0.4;
-K_d_psi = 0.136;
+K_px = -1;
+K_ix = 0.1;
+K_dx = -0.00001;
+K_py = 0.000;
+K_dy = 0.0000;
+K_pz = -0.0012;
+K_dz = 0.00001;
+K_iz = 0.000006;
+K_p_phi = 0.0001;
+K_i_phi = 0.0000;
+K_d_phi = 0.00005;
+K_p_theta = 0.00;
+K_d_theta = 0.00;
+K_i_theta = 0;
+K_p_psi = 0.3;
+K_d_psi = 0.2;
+K_i_psi = 0.2;
+% K_px = 0;
+% K_ix = 0;
+% K_dx = 0;
+% K_py = 0.000;
+% K_dy = 0.0000;
+% K_pz = 0.001;
+% K_dz = 0.001;
+% K_iz = 0.00006;
+% K_p_phi = 0.000;
+% K_i_phi = 0.0000;
+% K_d_phi = 0.0000;
+% K_p_theta = 0.00;
+% K_d_theta = 0.00;
+% K_i_theta = 0;
+% K_p_psi = 0.;
+% K_d_psi = 0.;
+% K_i_psi = 0.;
 %%
 Jr = 1.6129e-05;  % rotational moment of inertia
 Ixx = 0.03411283500000001;  % moment of inertia at x-axis
@@ -65,7 +87,7 @@ k = 0.09;  % lift coefficient
 b = 0.07;  % drag coefficient
 m = 1.8;  % quadrotor mass
 g = 9.81;
-
+%%
 % TODO: update the simulink model here to represent your own UAV dynamics
 sim('Quadrotor_Model.slx');
 
